@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spring MVC</title>
+    </head>
+    <body>
+        <h1> Starting </h1>
+        <br/>
+        <br/>
+
+        <a th:href="@{/add}"> Add person </a>
+
+        <br/>
+
+        <div th:if="${persons != null and !persons.empty}">
+            <table border="1">
+                <tr>
+                    <th> Nombre </th>
+                    <th> Apellido </th>
+                    <th> Email </th>
+                    <th> Teléfono </th>
+                    <th> Editar </th>
+                    <th> Eliminar </th>
+                </tr>
+
+                <tr th:each="person : ${persons}">
+                    <td th:text="${person.name}"> Show name </td>
+                    <td th:text="${person.lastName}"> Show last name </td>
+                    <td th:text="${person.email}"> Show email </td>
+                    <td th:text="${person.phone}"> Show phone </td>
+                    <td> <a th:href="@{/edit/} + ${person.idPersona}" th:text="Editar"></a> </td>
+                </tr>
+            </table>
+        </div>
+
+        <div th:if="${persons == null or persons.empty}">
+            La concha de la lora aquí no hay nada
+        </div>
+    </body>
+</html>

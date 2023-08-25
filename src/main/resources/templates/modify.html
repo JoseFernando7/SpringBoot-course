@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Add Person</title>
+    </head>
+    <body>
+        <h1> New person data </h1>
+        <a th:href="@{/}"> Back home </a>
+
+        <br/>
+        <br/>
+
+        <form th:action="@{/save}" method="post" th:object="${person}">
+<!--            Esto es para que, cuando se edite, le pase a la función el id para que modifique en lugar de crear un nuevo registro-->
+            <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+
+            <br/>
+
+            <label>
+                Name: <input type="text" th:field="*{name}">
+            </label>
+
+            <br/>
+            <br/>
+
+            <label>
+                Last name: <input type="text" th:field="*{lastName}">
+            </label>
+
+            <br/>
+            <br/>
+
+            <label>
+                Email: <input type="email" th:field="*{email}">
+            </label>
+
+            <br/>
+            <br/>
+
+            <label>
+                Number phone: <input type="tel" th:field="*{phone}">
+            </label>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <input type="submit" value="Save" name="save">
+        </form>
+    </body>
+</html>
