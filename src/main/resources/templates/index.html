@@ -30,6 +30,7 @@
                     <td th:text="${person.email}"> Show email </td>
                     <td th:text="${person.phone}"> Show phone </td>
                     <td> <a th:href="@{/edit/} + ${person.idPersona}" th:text="Editar"></a> </td>
+                    <td> <a th:href="@{/delete(idPersona=${person.idPersona})}" th:text="Eliminar"></a> </td>
                 </tr>
             </table>
         </div>

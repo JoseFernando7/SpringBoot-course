@@ -53,4 +53,28 @@ public class StartController
 
         return "modify";
     }
+
+    @GetMapping("/delete")
+    public String deletePerson(Person person)
+    {
+        personService.delete(person);
+
+        return "redirect:/";
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
