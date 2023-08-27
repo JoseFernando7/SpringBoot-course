@@ -5,8 +5,9 @@
         <title>Add Person</title>
     </head>
     <body>
-        <h1> New person data </h1>
-        <a th:href="@{/}"> Back home </a>
+        <header th:replace="~{layout/template :: header}"></header>
+        <h3> [[#{person.addPersonTitle}]] </h3>
+        <a th:href="@{/}"> [[#{label.backHome}]] </a>
 
         <br/>
         <br/>
@@ -18,35 +19,40 @@
             <br/>
 
             <label>
-                Name: <input type="text" th:field="*{name}">
+                [[#{person.name}]]: <input type="text" th:field="*{name}">
             </label>
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 
             <br/>
             <br/>
 
             <label>
-                Last name: <input type="text" th:field="*{lastName}">
+                [[#{person.lastName}]]: <input type="text" th:field="*{lastName}">
             </label>
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{name}"></span>
 
             <br/>
             <br/>
 
             <label>
-                Email: <input type="email" th:field="*{email}">
+                [[#{person.email}]]: <input type="email" th:field="*{email}">
             </label>
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 
             <br/>
             <br/>
 
             <label>
-                Number phone: <input type="tel" th:field="*{phone}">
+                [[#{person.phone}]]: <input type="tel" th:field="*{phone}">
             </label>
 
             <br/>
             <br/>
             <br/>
 
-            <input type="submit" value="Save" name="save">
+            <input type="submit" th:value="#{action.saveBtn}" name="save">
         </form>
+
+        <footer th:replace="~{layout/template :: footer}"></footer>
     </body>
 </html>

@@ -2,11 +2,13 @@ package com.josef7.HelloSpring.controller;
 
 import com.josef7.HelloSpring.domain.Person;
 import com.josef7.HelloSpring.service.PersonService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,7 +26,7 @@ public class StartController
         ArrayList<Person> persons = (ArrayList<Person>) personService.listPersons();
 
         Logger logger = LoggerFactory.getLogger(StartController.class);
-        logger.info("Executing the Spring MVC controller");
+        logger.info("Executing the SpringBoot MVC controller");
 
         model.addAttribute("persons", persons);
 
@@ -38,8 +40,13 @@ public class StartController
     }
 
     @PostMapping("/save")
-    public String savePerson(Person person)
+    public String savePerson(@Valid Person person, Errors errors)
     {
+        if (errors.hasErrors())
+        {
+            return "modify";
+        }
+
         personService.save(person);
 
         return "redirect:/";

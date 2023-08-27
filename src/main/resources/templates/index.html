@@ -5,23 +5,23 @@
         <title>Spring MVC</title>
     </head>
     <body>
-        <h1> Starting </h1>
+        <header th:replace="~{layout/template :: header}"></header>
         <br/>
         <br/>
 
-        <a th:href="@{/add}"> Add person </a>
+        <a th:href="@{/add}"> [[#{person.add}]] </a>
 
         <br/>
 
         <div th:if="${persons != null and !persons.empty}">
             <table border="1">
                 <tr>
-                    <th> Nombre </th>
-                    <th> Apellido </th>
-                    <th> Email </th>
-                    <th> Teléfono </th>
-                    <th> Editar </th>
-                    <th> Eliminar </th>
+                    <th> [[#{person.name}]] </th>
+                    <th> [[#{person.lastName}]] </th>
+                    <th> [[#{person.email}]] </th>
+                    <th> [[#{person.phone}]] </th>
+                    <th> [[#{action.edit}]] </th>
+                    <th> [[#{action.delete}]] </th>
                 </tr>
 
                 <tr th:each="person : ${persons}">
@@ -29,14 +29,16 @@
                     <td th:text="${person.lastName}"> Show last name </td>
                     <td th:text="${person.email}"> Show email </td>
                     <td th:text="${person.phone}"> Show phone </td>
-                    <td> <a th:href="@{/edit/} + ${person.idPersona}" th:text="Editar"></a> </td>
-                    <td> <a th:href="@{/delete(idPersona=${person.idPersona})}" th:text="Eliminar"></a> </td>
+                    <td> <a th:href="@{/edit/} + ${person.idPersona}" th:text="#{action.edit}"></a> </td>
+                    <td> <a th:href="@{/delete(idPersona=${person.idPersona})}" th:text="#{action.delete}"></a> </td>
                 </tr>
             </table>
         </div>
 
         <div th:if="${persons == null or persons.empty}">
-            La concha de la lora aquí no hay nada
+            [[#{action.emptyList}]]
         </div>
+
+    <footer th:replace="~{layout/template :: footer}"></footer>
     </body>
 </html>

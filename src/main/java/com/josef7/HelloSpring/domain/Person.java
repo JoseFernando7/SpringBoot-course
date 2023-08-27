@@ -1,6 +1,8 @@
 package com.josef7.HelloSpring.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,8 +16,12 @@ public class Person implements Serializable
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPersona;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String lastName;
+    @NotEmpty
+    @Email
     private String email;
     private String phone;
 

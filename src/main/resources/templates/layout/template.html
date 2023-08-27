@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Template</title>
+    </head>
+    <body>
+        <header th:fragment="header">
+            <h1 th:text="#{template.title}"></h1>
+        </header>
+
+        <footer th:fragment="footer">
+            <div>
+                <br/>
+                <a th:href="@{/(lang=es)}">ES</a>
+                <a th:href="@{/(lang=en)}">EN</a>
+                <span> [[#{template.footer}]] <a href="https://happy-perlman-05d7e7.netlify.app/" target="_blank"> Jose Fernando Restrepo </a></span>
+            </div>
+        </footer>
+    </body>
+</html>
